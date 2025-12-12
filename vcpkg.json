@@ -1,0 +1,9 @@
+{
+  "name": "ott-server",
+  "version-string": "1.0.0",
+  "dependencies": [
+    "openssl",
+    "cjson",
+    "sqlite3"
+  ]
+}
