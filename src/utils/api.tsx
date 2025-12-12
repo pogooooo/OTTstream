@@ -1,4 +1,4 @@
-import type { AuthPayload, AuthResponse, VideoItem, EditPayload, DeletePayload } from './types';
+import type { AuthPayload, AuthResponse, VideoItem, EditPayload } from './types';
 import axios, { type AxiosInstance } from 'axios';
 
 const axiosInstance: AxiosInstance = axios.create({
@@ -9,25 +9,25 @@ const axiosInstance: AxiosInstance = axios.create({
     withCredentials: true,
 });
 
-function getAuthHeader(): { Authorization?: string } {
-    const name = 'access_token=';
-    const decodedCookie = decodeURIComponent(document.cookie);
-    const ca = decodedCookie.split(';');
-
-    for (let i = 0; i < ca.length; i++) {
-        let c = ca[i];
-        c = c.trim();
-        if (c.indexOf(name) === 0) {
-            const token = c.substring(name.length, c.length);
-            if (token.length > 0) {
-                return {
-                    'Authorization': `Bearer ${token}`
-                };
-            }
-        }
-    }
-    return {};
-}
+// function getAuthHeader(): { Authorization?: string } {
+//     const name = 'access_token=';
+//     const decodedCookie = decodeURIComponent(document.cookie);
+//     const ca = decodedCookie.split(';');
+//
+//     for (let i = 0; i < ca.length; i++) {
+//         let c = ca[i];
+//         c = c.trim();
+//         if (c.indexOf(name) === 0) {
+//             const token = c.substring(name.length, c.length);
+//             if (token.length > 0) {
+//                 return {
+//                     'Authorization': `Bearer ${token}`
+//                 };
+//             }
+//         }
+//     }
+//     return {};
+// }
 
 export async function signUpApi(payload: AuthPayload): Promise<AuthResponse> {
     try {
@@ -158,7 +158,7 @@ export async function uploadVideo(file: File, title: string, token: string | nul
     const headers = {
         'Authorization': `Bearer ${token}`,
         // 'Content-Type': 'video/mp4',
-        // 'X-Video-Title': encodeURIComponent(title)
+        'X-Video-Title': encodeURIComponent(title)
     };
 
     const url = `/video/upload`;

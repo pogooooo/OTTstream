@@ -74,10 +74,4 @@ const VideoFrame = styled.iframe`
     margin-bottom: 20px;
 `;
 
-const InfoSection = styled.div`
-    padding: 15px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-`;
-
 export default VideoDetail;

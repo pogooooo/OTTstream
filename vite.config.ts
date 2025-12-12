@@ -8,8 +8,8 @@ export default defineConfig({
       '/auth': {
         target: 'http://192.168.35.124:9000',
         changeOrigin: true,
-        configure: (proxy, options) => {
-          proxy.on('proxyReq', (proxyReq, req, res) => {
+        configure: (proxy) => {
+          proxy.on('proxyReq', (proxyReq, req) => {
             if (req.headers.authorization) {
               proxyReq.setHeader('authorization', req.headers.authorization);
             }
@@ -19,8 +19,8 @@ export default defineConfig({
       '/video': {
         target: 'http://192.168.35.124:9000',
         changeOrigin: true,
-        configure: (proxy, options) => {
-          proxy.on('proxyReq', (proxyReq, req, res) => {
+        configure: (proxy) => {
+          proxy.on('proxyReq', (proxyReq, req) => {
             if (req.headers.authorization) {
               proxyReq.setHeader('authorization', req.headers.authorization);
             }
